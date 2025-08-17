@@ -1,0 +1,44 @@
+## Clock signal
+NET "clk"            LOC = "V10" | IOSTANDARD = "LVCMOS33";   #Bank = 2, pin name = IO_L30N_GCLK0_USERCCLK, Sch name = GCLK
+#Net "clk" TNM_NET = sys_clk_pin;
+#TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 100000 kHz;
+
+
+## Buttons (for events: ignition, brake, hidden, driver door, passenger door)
+NET "ignition_switch"    LOC = "B8"  | IOSTANDARD = "LVCMOS33";   # BTN0
+NET "brake_switch"       LOC = "C9"  | IOSTANDARD = "LVCMOS33";   # BTN1
+NET "hidden_switch"      LOC = "C4"  | IOSTANDARD = "LVCMOS33";   # BTN2
+NET "driver_door"        LOC = "A8"  | IOSTANDARD = "LVCMOS33";   # BTN3
+NET "passenger_door"     LOC = "D9"  | IOSTANDARD = "LVCMOS33";   # BTN4
+
+
+## Switches (for config: reprogram, time selectors, new time values, reset)
+NET "time_parameter_selector<0>" LOC = "T10" | IOSTANDARD = "LVCMOS33";   # SW0
+NET "time_parameter_selector<1>" LOC = "T9"  | IOSTANDARD = "LVCMOS33";   # SW1
+NET "new_time_value<0>"          LOC = "V9"  | IOSTANDARD = "LVCMOS33";   # SW2
+NET "new_time_value<1>"          LOC = "M8"  | IOSTANDARD = "LVCMOS33";   # SW3
+NET "new_time_value<2>"          LOC = "N8"  | IOSTANDARD = "LVCMOS33";   # SW4
+NET "new_time_value<3>"          LOC = "U8"  | IOSTANDARD = "LVCMOS33";   # SW5
+NET "rst"                        LOC = "V8"  | IOSTANDARD = "LVCMOS33";   # SW6
+NET "reprogram"                  LOC = "T5"  | IOSTANDARD = "LVCMOS33";   # SW7
+
+
+## LEDs
+NET "fuel_pump_power" LOC = "T11" | IOSTANDARD = LVCMOS33;  # LED 0
+NET "status_led"      LOC = "R11" | IOSTANDARD = LVCMOS33;  # LED 1
+NET "siren_out"       LOC = "N11" | IOSTANDARD = LVCMOS33;  # LED 2 
+
+
+## 7-segment display
+NET "segments<0>" LOC = "T17" ;  # a
+NET "segments<1>" LOC = "T18" ;  # b
+NET "segments<2>" LOC = "U17" ;  # c
+NET "segments<3>" LOC = "U18" ;  # d
+NET "segments<4>" LOC = "M14" ;  # e
+NET "segments<5>" LOC = "N14" ;  # f
+NET "segments<6>" LOC = "L14" ;  # g
+
+NET "an<0>" LOC = "N16" ;
+NET "an<1>" LOC = "N15" ;
+NET "an<2>" LOC = "P18" ;
+NET "an<3>" LOC = "P17" ;
