@@ -118,14 +118,17 @@ module anti_theft_fsm (
                 end
             end
 
-            // Trigger countdown (driver/passenger delay)
-            S_TRIGGERED_COUNTDOWN: begin
-                led = 1;
-                if (ignition)
-                    next_state = S_DISARMED;
-                else if (expired_latched)   // only AFTER delay
-                    next_state = S_SOUND_ALARM;
-            end
+           // Trigger countdown (driver/passenger delay)
+S_TRIGGERED_COUNTDOWN: begin
+    led = 1;
+    if (ignition)
+        next_state = S_DISARMED;
+    else if (!driver_door && !passenger_door)  // 🚪 all doors closed -> re-arm immediately
+        next_state = S_ARMED_IDLE;
+    else if (expired_latched)                  // countdown finished -> alarm
+        next_state = S_SOUND_ALARM;
+end
+
 
             // Sound alarm (only after delay)
             S_SOUND_ALARM: begin
@@ -142,6 +145,8 @@ module anti_theft_fsm (
     if (!ignition) begin
         if (!driver_door && !passenger_door)
             next_state = S_ARMED_IDLE;   // Direct re-arm if no doors touched
+			else if(driver_door || passenger_door)
+			   next_state= S_WAIT_DRIVER_CLOSE;
         else
             next_state = S_WAIT_DRIVER_OPEN; // Normal path if doors were used
     end
@@ -150,7 +155,7 @@ end
 
             // Wait driver open
             S_WAIT_DRIVER_OPEN: begin
-                if (driver_door)
+                if (driver_door || passenger_door)
                     next_state = S_WAIT_DRIVER_CLOSE;
             end
 
