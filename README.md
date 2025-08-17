@@ -18,15 +18,15 @@ The design integrates **debounced inputs, programmable timing parameters, finite
 ---
 
 ## 📂 Project Structure
-/AntiTheftSystem.v → Top-level module (integrates all components)
-/debounce.v → Input debouncer for switches & buttons
-/Fuel_Pump.v → Controls fuel pump authentication
-/Time_Parameters.v → Stores & reprograms time values
-/OneHzDivider.v → Clock divider for 1 Hz enable signal
-/Timer.v → Countdown timer with expiration flag
-/seven_segment.v → Display timer value on 7-segment
-/anti_theft_fsm.v → Main FSM handling states & transitions
-/constraints.ucf → FPGA pin mappings (buttons, switches, LEDs, display)
+├── AntiTheftSystem.v       # Top-level module (integrates all components)
+├── debounce.v              # Input debouncer for switches & buttons
+├── Fuel_Pump.v             # Controls fuel pump authentication
+├── Time_Parameters.v       # Stores & reprograms time values
+├── OneHzDivider.v          # Clock divider for 1 Hz enable signal
+├── Timer.v                 # Countdown timer with expiration flag
+├── seven_segment.v         # Display timer value on 7-segment
+├── anti_theft_fsm.v        # Main FSM handling states & transitions
+└── constraints.ucf         # FPGA pin mappings (buttons, switches, LEDs, display)
 
 ## ⚙️ State Machine Design
 The **Anti-Theft FSM** handles different system states:
